@@ -30,7 +30,8 @@ pub struct Client<P: Provider> {
     // TODO Make an actual uri
     pub redirect_uri: Option<String>,
 
-    provider: P,
+    /// The provider.
+    pub provider: P,
 }
 
 impl<P: Provider> Client<P> {
