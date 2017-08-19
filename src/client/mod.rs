@@ -34,7 +34,7 @@ pub struct Client<P: Provider> {
     pub provider: P,
 }
 
-impl<P: Provider> Client<P> {
+impl<P: Provider + Default> Client<P> {
     /// Creates a client.
     ///
     /// # Examples
@@ -52,7 +52,9 @@ impl<P: Provider> Client<P> {
     pub fn new(client_id: String, client_secret: String, redirect_uri: Option<String>) -> Self {
         Client::with_provider(client_id, client_secret, P::default(), redirect_uri)
     }
+}
 
+impl<P: Provider> Client<P> {
     /// Creates a client with a given Provider. Use when the provider needs non-default Initialization.
     pub fn with_provider(
         client_id: String,
